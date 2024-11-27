@@ -17,7 +17,10 @@ public class CarController {
 
     @GetMapping(value = "")
     public String printCars(@RequestParam(value = "count", required = false) Integer count, ModelMap model) {
-        List<Car> cars = new ArrayList<>(new CarServiceImpl().getListCarsByCount(count));
+        List<Car> cars;
+        if(count != null)
+            cars = new ArrayList<>(new CarServiceImpl().getListCarsByCount(count));
+        else cars = new ArrayList<>(new CarServiceImpl().getFullList());
         model.addAttribute("cars", cars);
         return "cars";
     }

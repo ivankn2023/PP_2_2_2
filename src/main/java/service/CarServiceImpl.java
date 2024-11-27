@@ -18,8 +18,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> getFullList() {
+        return cars;
+    }
+
+    @Override
     public List<Car> getListCarsByCount(int count) {
-        if(count>=5) return new ArrayList<>(cars);
+        if(count>=5) return getFullList();
         else if (count > 0){
             return new ArrayList<>(cars.subList(0, count));
         }
